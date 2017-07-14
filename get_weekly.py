@@ -6,7 +6,7 @@ import os
 import requests
 
 STRAVA_PUBLIC_AUTH = os.getenv('STRAVA_PUBLIC_AUTH')
-CLUBS = [197162,]#, 2298]
+CLUBS = [197162, 2298]
 ROOT_URL = 'https://www.strava.com/api/v3/'
 
 

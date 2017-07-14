@@ -1,0 +1,13 @@
+.lead {
+    font-size: 5em;
+    line-height: 0.9em;
+    margin-bottom: 2em;
+}
+
+.lead p {
+    margin-bottom: 1em;
+}
+
+.container {
+    margin: 5em;
+}
