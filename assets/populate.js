@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
           let distance = document.getElementById(`${lookup}-distance`);
           distance.textContent = Math.round(json[key].distance / 1000);
           let athletes = document.getElementById(`${lookup}-athletes`);
-          athletes.textContent = json[key].athletes.length;
+          athletes.textContent = json[key].athletes;
           latest = true;
         }
       }

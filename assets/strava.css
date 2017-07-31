@@ -1,11 +1,28 @@
-.lead {
-    font-size: 5em;
-    line-height: 0.9em;
+.hero {
+    font-size: 4em;
+    line-height: 1.2em;
     margin-bottom: 2em;
 }
 
-.lead p {
-    margin-bottom: 1em;
+body {
+    font-family: Fira Sans;
+    color: #555;
+    background-color: #eee;
+}
+
+.block {
+    width: 100%;
+    margin-top: 0.5em;
+    padding-left: 2em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    background-color: #ddd;
+    border-left: 4px solid grey;
+    border-right: 4px solid grey;
+}
+
+b {
+    color: black;
 }
 
 .container {

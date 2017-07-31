@@ -5,38 +5,39 @@ import json
 import os
 import requests
 
-STRAVA_PUBLIC_AUTH = os.getenv('STRAVA_PUBLIC_AUTH')
 CLUBS = [197162, 2298]
-ROOT_URL = 'https://www.strava.com/api/v3/'
+ROOT_URL = 'https://www.strava.com/clubs/'
+
+today = datetime.today()
+today_str = today.strftime('%Y-%m-%d')
+start_week = today - timedelta(days=today.weekday())
+start_week_str = start_week.strftime('%Y-%m-%d')
 
 
-def get(path, params=None):
-    params = params or {}
-    params.update({'per_page': 200})
+def get(path):
     headers = {
-        'Authorization': 'Bearer {}'.format(STRAVA_PUBLIC_AUTH)
+        'Accept': 'text/javascript, application/javascript'
     }
-    res = requests.get(ROOT_URL + path, params=params, headers=headers)
-    res.raise_for_status()
+    url = '%s%d/leaderboard/' % (ROOT_URL, path)
+    res = requests.get(url, headers=headers)
     return res.json()
 
 
 def get_clubs():
-    data = OrderedDict()
     for club in CLUBS:
-        for x in range(1, 100):
-            res = get('clubs/{}/activities'.format(club), params={'page': x})
-            if not res:
-                break
-
-            for entry in res:
-                data[entry['id']] = {
-                    'athlete': entry['athlete']['id'],
-                    'distance': entry['distance'],
-                    'date': entry['start_date']
-                }
-
-        json.dump(data, open('data/data.{}.json'.format(club), 'w'))
+        data = OrderedDict()
+        leaderboard = get(club)
+        for entry in leaderboard['data']:
+            id = '%s-%s' % (start_week_str, entry['athlete_id'])
+            if int(entry['distance']) == 0:
+                continue
+            data[id] = {
+                'week': start_week_str,
+                'date': today_str,
+                'athlete': entry['athlete_id'],
+                'distance': entry['distance'],
+            }
+        json.dump(data, open('data/data.{}.json'.format(club), 'w'), indent=2)
 
 
 def summarize():
@@ -46,21 +47,16 @@ def summarize():
             data = {}
             entries = json.load(open('data/{}'.format(filename)))
             for key, entry in entries.items():
-                date_obj = datetime.strptime(entry['date'], '%Y-%m-%dT%H:%M:%SZ').date()
-                start_week = date_obj - timedelta(days=date_obj.weekday())
-                start_week = start_week.strftime('%Y-%m-%d')
-
-                data.setdefault(start_week, {'distance': 0, 'athletes': []})
-                data[start_week]['distance'] += entry['distance']
-                if entry['athlete'] not in data[start_week]['athletes']:
-                    data[start_week]['athletes'].append(entry['athlete'])
+                data.setdefault(entry['week'], {'distance': 0, 'athletes': 0})
+                data[entry['week']]['distance'] += entry['distance']
+                data[entry['week']]['athletes'] += 1
 
             sorted_data = OrderedDict()
             keys = sorted(data.keys())
             for key in keys:
                 sorted_data[key] = data[key]
 
-            json.dump(data, open('summaries/summary.{}.json'.format(file_id), 'w'))
+            json.dump(data, open('summaries/summary.{}.json'.format(file_id), 'w'), indent=2)
 
 
 if __name__ == '__main__':

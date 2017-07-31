@@ -6,12 +6,16 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/strava.css"/>
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
   </head>
   <body>
     <div class="container">
-      <div class="lead">
-        <p>This week <b id="cycling-athletes">3</b> Mozillians have cycled for a combined <b><span id="cycling-distance">40</span> kms</b>.</p>
-        <p>This week <b id="running-athletes">3</b> Mozillians have run for a combined <b><span id="running-distance">40</span> kms</b>.</p>
+      <div class="hero">
+        <p>This week Mozillians have...</p>
+
+        <p id="running" class="block"><b>run</b> for a combined <b><span id="running-distance">40</span> kms</b> <br> by <b id="running-athletes">3</b> athletes</p>
+        <p id="cycling" class="block"><b>cycled</b> for a combined <b><span id="cycling-distance">40</span> kms</b> <br> by <b id="cycling-athletes">3</b> athletes</p>
+
       </div>
       <p class="muted">Data pulled from the <a href="https://www.strava.com/clubs/Mozilla-Cycling">Mozilla cycling</a> and <a href="https://www.strava.com/clubs/mozilla">Mozilla running</a> clubs on Strava. <a href="https://github.com/andymckay/mozilla-strava">Source on github</a>.</p>
     </div>
