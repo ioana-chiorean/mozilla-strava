@@ -6,23 +6,22 @@
 
 body {
     font-family: Fira Sans;
-    color: #555;
+    font-weight: 200;
+    color: #111;
     background-color: #eee;
 }
 
 .block {
     width: 100%;
     margin-top: 0.5em;
-    padding-left: 2em;
+    padding-left: 30%;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
-    background-color: #ddd;
-    border-left: 4px solid grey;
-    border-right: 4px solid grey;
 }
 
 b {
-    color: black;
+    color: #E66000;
+    font-weight: 400;
 }
 
 .container {
