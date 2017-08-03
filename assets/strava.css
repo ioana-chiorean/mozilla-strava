@@ -29,6 +29,7 @@ b {
 
 .container {
     margin: 10vh;
+    width: auto; /* override bootstrap to avoid pixel sizing */
 }
 
 p {
