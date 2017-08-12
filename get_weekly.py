@@ -25,7 +25,7 @@ def get(path):
 
 def get_clubs():
     for club in CLUBS:
-        data = OrderedDict()
+        data = json.load(open('data/data.{}.json'.format(club), 'r'))
         leaderboard = get(club)
         for entry in leaderboard['data']:
             id = '%s-%s' % (start_week_str, entry['athlete_id'])
