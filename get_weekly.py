@@ -37,7 +37,13 @@ def get_clubs():
                 'athlete': entry['athlete_id'],
                 'distance': entry['distance'],
             }
-        json.dump(data, open('data/data.{}.json'.format(club), 'w'), indent=2)
+
+        sorted_data = OrderedDict()
+        keys = sorted(data.keys())
+        for key in keys:
+            sorted_data[key] = data[key]
+
+        json.dump(sorted_data, open('data/data.{}.json'.format(club), 'w'), indent=2)
 
 
 def summarize():
@@ -56,7 +62,7 @@ def summarize():
             for key in keys:
                 sorted_data[key] = data[key]
 
-            json.dump(data, open('summaries/summary.{}.json'.format(file_id), 'w'), indent=2)
+            json.dump(sorted_data, open('summaries/summary.{}.json'.format(file_id), 'w'), indent=2)
 
 
 if __name__ == '__main__':
