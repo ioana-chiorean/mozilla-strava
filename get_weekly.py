@@ -25,10 +25,13 @@ def get(path):
 
 def get_clubs():
     for club in CLUBS:
-        data = json.load(open('data/data.{}.json'.format(club), 'r'))
+        try:
+            data = json.load(open('data/data.{}.json'.format(club), 'r'))
+        except ValueError:
+            data = {}
         leaderboard = get(club)
         for entry in leaderboard['data']:
-            id = '%s-%s' % (start_week_str, entry['athlete_id'])
+            id = '%s-%s' % (start_week_str, entry['best_activities_distance_activity_id'])
             if int(entry['distance']) == 0:
                 continue
             data[id] = {
@@ -51,7 +54,10 @@ def summarize():
         if filename.endswith('.json'):
             file_id = filename.split('.')[1]
             data = {}
-            entries = json.load(open('data/{}'.format(filename)))
+            try:
+                entries = json.load(open('data/{}'.format(filename)))
+            except ValueError:
+                entries = {}
             for key, entry in entries.items():
                 data.setdefault(entry['week'], {'distance': 0, 'athletes': 0})
                 data[entry['week']]['distance'] += entry['distance']
