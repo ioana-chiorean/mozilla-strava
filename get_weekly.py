@@ -58,7 +58,7 @@ def summarize():
                 data[entry['week']]['athletes'] += 1
 
             sorted_data = OrderedDict()
-            keys = sorted(data.keys())
+            keys = reversed(sorted(data.keys()))
             for key in keys:
                 sorted_data[key] = data[key]
 
