@@ -1,25 +1,9 @@
-.hero {
-    margin-bottom: 2em;
-}
-
-.hero > p {
-    font-size: 4.5vw;
-    line-height: 1.4em;
-}
-
 body {
     font-family: Fira Sans;
     font-weight: 400;
-    color: #111;
+    color: #222;
     background-color: #eee;
-}
-
-.block {
-    width: 100%;
-    margin-top: 1vh;
-    padding-left: 30vh;
-    padding-top: 5vh;
-    padding-bottom: 4vh;
+    margin: 10vh;
 }
 
 b {
@@ -27,12 +11,50 @@ b {
     font-weight: 400;
 }
 
-.container {
-    margin: 10vh;
-    width: auto; /* override bootstrap to avoid pixel sizing */
+.wrapper {
+    display: grid;
+    grid-template-areas: "l r";
+    align-items: start;
+}
+
+.block {
+    padding-left: 1em;
+}
+
+.left {
+    grid-area: "l";
+    padding-right: 1.5vh;
+}
+
+.right {
+    grid-area: "r";
+    border-left: 2px solid grey;
+    padding-left: 4vh;
 }
 
 p {
-    font-size: 4vh;
+    font-size: 6vh;
     line-height: 1.4em;
+}
+
+.muted p {
+    font-size: 3vh;
+    color: #222;
+}
+
+.muted p a {
+    color: #E66000;
+}
+
+@media (max-width: 1000px) {
+    .right {
+        display: none;
+    }
+}
+
+#chart-container {
+    position: relative;
+    display: block;
+    padding-top: 5vh;
+    width: 40vw;
 }
