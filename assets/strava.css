@@ -46,7 +46,7 @@ p {
     color: #E66000;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 800px) {
     .right {
         display: none;
     }

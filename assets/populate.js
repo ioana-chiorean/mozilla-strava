@@ -72,7 +72,9 @@ function showGraph() {
                   display: true,
                   labelString: 'KM'
               },
-              beginAtZero: true,
+              ticks: {
+                beginAtZero: true
+              },
           }]
       }
     }
