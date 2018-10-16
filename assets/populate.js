@@ -1,6 +1,5 @@
 let ids = {
-  '197162': 'cycling',
-  '2298': 'running',
+  '88420': 'activities',
 };
 
 let chartData = {
@@ -42,17 +41,10 @@ function showGraph() {
       datasets: [
       {
         label: 'Running',
-        data: chartData['running'].slice(0, 5).reverse(),
+        data: chartData['activities'].slice(0, 5).reverse(),
         fill: false,
         backgroundColor: 'blue',
         borderColor: 'blue',
-      },
-      {
-        label: 'Cycling',
-        data: chartData['cycling'].slice(0, 5).reverse(),
-        fill: false,
-        backgroundColor: 'firebrick',
-        borderColor: 'firebrick',
       }
       ]
     },
