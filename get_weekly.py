@@ -5,7 +5,7 @@ import json
 import os
 import requests
 
-CLUBS = [197162, 2298]
+CLUBS = [88420]
 ROOT_URL = 'https://www.strava.com/clubs/'
 
 offset = 0
